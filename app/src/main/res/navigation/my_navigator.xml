@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigator"
+    app:startDestination="@id/initFragment">
+
+    <fragment
+        android:id="@+id/initFragment"
+        android:name="com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.InitFragment"
+        android:label="fragment_init"
+        tools:layout="@layout/fragment_init" >
+        <action
+            android:id="@+id/action_f2a"
+            app:destination="@id/fragmentA" />
+        <action
+            android:id="@+id/action_f2b"
+            app:destination="@id/fragmentB" />
+        <action
+            android:id="@+id/action_f2c"
+            app:destination="@id/fragmentC" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentA"
+        android:name="com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.FragmentA"
+        android:label="fragment_a"
+        tools:layout="@layout/fragment_a" />
+    <fragment
+        android:id="@+id/fragmentB"
+        android:name="com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.FragmentB"
+        android:label="fragment_b"
+        tools:layout="@layout/fragment_b" />
+    <fragment
+        android:id="@+id/fragmentC"
+        android:name="com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.FragmentC"
+        android:label="fragment_c"
+        tools:layout="@layout/fragment_c" />
+    <fragment
+        android:id="@+id/tempFragment"
+        android:name="com.firebaseapp.charlieandroidblog.cleanarchitectureexample.TempFragment"
+        android:label="fragment_temp"
+        tools:layout="@layout/fragment_temp" />
+</navigation>
