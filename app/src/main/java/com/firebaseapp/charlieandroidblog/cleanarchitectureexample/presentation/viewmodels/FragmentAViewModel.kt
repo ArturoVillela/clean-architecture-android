@@ -5,31 +5,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 //import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.ResponseServer
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.User
-import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.UserRepository
-import dagger.hilt.android.AndroidEntryPoint
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.usecases.UseCaseNetwork
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 
 @HiltViewModel
-class FragmentAViewModel @Inject constructor(  //need to be accompanied by this anotation
-   private val userRepository: UserRepository
-)   :ViewModel() {
+class FragmentAViewModel @Inject constructor(
+    private val useCaseNetwork: UseCaseNetwork
+) :ViewModel() {
 
 
     private var listUsers = MutableLiveData<List<User>>()
     var _listUsers = listUsers
 
+    fun getListUsers():List<User>? = _listUsers.value
+
 
     fun initRestCall(){
         //Direct call
-        viewModelScope.launch {
-            val wrapperResponse = userRepository.getUsers()
-            if (wrapperResponse.sucessCall)
-                _listUsers.value = wrapperResponse.listUsers
-        }
+        val scope = viewModelScope
+        useCaseNetwork.initUsersCalls(_listUsers, scope)
     }
 
     //Faking rest service

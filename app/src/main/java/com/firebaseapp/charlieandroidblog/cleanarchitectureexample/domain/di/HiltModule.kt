@@ -1,12 +1,12 @@
 package com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.di
 
-import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.UserRepository
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.network.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
+import javax.inject.Singleton
 
 
 @Module
@@ -14,8 +14,9 @@ import javax.inject.Named
 object HiltModule {
 
     @Provides
+    @Singleton
     @Named("repository")
-    fun providesUserRepository():UserRepository{
+    fun providesUserRepository(): UserRepository {
         return UserRepository()
     }
 }

@@ -9,17 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.R
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.ResponseServer
-import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.UserRepository
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.recyclerviews.UsersAdapter
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.viewmodels.FragmentAViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * A simple [Fragment] subclass.
@@ -42,19 +40,29 @@ class FragmentA : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_a, container, false)
-
         val vm = ViewModelProvider(this).get(FragmentAViewModel::class.java)
+        var fragContext = activity
 
         val btn = view.findViewById<Button>(R.id.button_fa)
         btn.setOnClickListener {
             vm.initRestCall()
         }
 
+        val rv = view.findViewById<RecyclerView>(R.id.rv_container)
+        var linearLayoutManager = LinearLayoutManager(fragContext)
+        rv.layoutManager = linearLayoutManager
+
+
         vm._listUsers.observe(viewLifecycleOwner, Observer {
             val cantUsers = vm._listUsers.value?.size
             Toast.makeText(this.context,"success, users:"+cantUsers,Toast.LENGTH_SHORT).show()
-        })
+            fragContext?.let {
+                var adapter = UsersAdapter(vm.getListUsers()!!,it)
+                adapter?.notifyDataSetChanged()
+                rv.adapter = adapter
+            }
 
+        })
 
 
         return view

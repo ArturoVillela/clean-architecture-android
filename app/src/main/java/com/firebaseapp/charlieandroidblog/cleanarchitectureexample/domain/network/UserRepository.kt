@@ -1,9 +1,8 @@
-package com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data
+package com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.network
 
-import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.network.UsersApi
-import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.domain.network.WrapperResponse
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.Const
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.WrapperResponse
 import retrofit2.Retrofit
-import retrofit2.await
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
