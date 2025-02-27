@@ -4,12 +4,13 @@ import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
 
 
 @Module
-@InstallIn(SingletonComponent::class) // one of those things that i have no idea why.. but it most be there
+@InstallIn(FragmentComponent::class) // one of those things that i have no idea why.. but it most be there
 object HiltModule {
 
     @Provides

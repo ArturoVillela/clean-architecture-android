@@ -12,16 +12,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.R
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.ResponseServer
+import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.data.UserRepository
 import com.firebaseapp.charlieandroidblog.cleanarchitectureexample.presentation.viewmodels.FragmentAViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * A simple [Fragment] subclass.
  * Use the [FragmentA.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class FragmentA : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -29,7 +34,6 @@ class FragmentA : Fragment() {
 //        ViewModelProvider(this).get(FragmentAViewModel::class.java)
 //    }
    // private val viewModel = ViewModelProvider(this).get(FragmentAViewModel::class.java)
-
 
 
     override fun onCreateView(

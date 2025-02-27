@@ -13,19 +13,12 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-@HiltViewModel //indicate we will inject something in the constructor
+@HiltViewModel
 class FragmentAViewModel @Inject constructor(  //need to be accompanied by this anotation
-    val userRepository: UserRepository
+   private val userRepository: UserRepository
 )   :ViewModel() {
-//@HiltViewModel
-//class FragmentAViewModel:ViewModel() {
 
-//    @Inject
-//    @Named("repository")
-//    lateinit var userRepository: UserRepository
 
-    //var stateResponse : StateFlow<ResponseServer> = MutableStateFlow(ResponseServer())
-    //var uiState:StateFlow<ResponseServer> = stateResponse
     private var listUsers = MutableLiveData<List<User>>()
     var _listUsers = listUsers
 

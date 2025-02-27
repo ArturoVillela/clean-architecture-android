@@ -6,9 +6,10 @@ import retrofit2.Retrofit
 import retrofit2.await
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class UserRepository {
+class UserRepository @Inject constructor() {
 
     suspend fun getUsers(): WrapperResponse {
 
